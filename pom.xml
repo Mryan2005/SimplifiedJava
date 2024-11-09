@@ -8,6 +8,18 @@
     <artifactId>javakit</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <developers>
+        <developer>
+            <id>mryan2005.top</id>
+            <name>Mryan2005</name>
+            <email>Mryan2005@mryan2005.top</email>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
     <properties>
         <java.version>21</java.version>
         <maven.compiler.source>21</maven.compiler.source>
