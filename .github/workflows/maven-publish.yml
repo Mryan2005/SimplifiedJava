@@ -6,8 +6,18 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      actions: write
+      checks: write
+      contents: write
+      deployments: write
+      id-token: none
+      issues: write
       packages: write
+      pages: write
+      pull-requests: write
+      repository-projects: write
+      security-events: write
+      statuses: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
