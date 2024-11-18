@@ -7,5 +7,6 @@ public class SQLite {
     }
 
     public Connection getSQLer() {
+        return null;
     }
 }
