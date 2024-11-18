@@ -7,5 +7,6 @@ public class MySQL {
     }
 
     public Connection getSQLer() {
+        return null;
     }
 }
