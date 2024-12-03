@@ -18,7 +18,7 @@ public class Trans {
             content.append(rf.readLine());
         }
         rf.close();
-        object = NewJSONObject.parseObject(content.toString(), true);
+        object = EasyJSONObject.parseObject(content.toString(), true);
     }
 
     public String tr(String key) {

@@ -3,8 +3,8 @@ package translate;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
 
-public class NewJSONObject extends JSONObject {
-    public NewJSONObject() {
+public class EasyJSONObject extends JSONObject {
+    public EasyJSONObject() {
         super();
     }
     public static JSONObject parseObject(String text, boolean ordered) {
