@@ -1,3 +1,5 @@
+package top.mryan2005;
+
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.util.Random;

@@ -1,13 +1,10 @@
-package translate;
+package top.mryan2005;
 
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.parser.Feature;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class Trans {
     public JSONObject object;

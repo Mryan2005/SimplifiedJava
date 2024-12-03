@@ -1,4 +1,4 @@
-package SQLs;
+package top.mryan2005.SQLs;
 
 import java.sql.Connection;
 

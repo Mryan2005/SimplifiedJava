@@ -1,4 +1,9 @@
-import SQLs.*;
+package top.mryan2005;
+
+import jpp.SQLs.*;
+import top.mryan2005.SQLs.MySQL;
+import top.mryan2005.SQLs.SQLServer;
+import top.mryan2005.SQLs.SQLite;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,7 +19,6 @@ public class SQL {
     public String username;
     public String password;
     public String databaseName;
-    public String connectionUrl;
     public Connection ConnectToSQL(String type, String ip, String port, String username, String password, String databaseName) {
         this.type = type;
         this.ip = ip;
@@ -22,10 +26,10 @@ public class SQL {
         this.username = username;
         this.password = password;
         this.databaseName = databaseName;
-        if("SQL Server".matches(type)) {
+        if("jpp.SQL Server".matches(type)) {
             try {
                 SQLServer sql = new SQLServer();
-                sql.ConnectToSQLServer(ip, port, databaseName, username, password);
+                sql.ConnectToSQLServer(ip, port, databaseName, username, password, false);
                 System.out.println("连接成功！");
                 con = sql.getSQLer();
             } catch (Exception e) {

@@ -1,3 +1,5 @@
+package top.mryan2005;
+
 public class Base64 {
     public String encodeBase64(String input) {
         return java.util.Base64.getEncoder().encodeToString(input.getBytes());

@@ -1,5 +1,6 @@
+import top.mryan2005.RAFile;
 import org.junit.Test;
-import translate.Trans;
+import top.mryan2005.Trans;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;

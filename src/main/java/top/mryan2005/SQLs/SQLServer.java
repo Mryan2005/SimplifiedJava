@@ -1,6 +1,5 @@
-package SQLs;
+package top.mryan2005.SQLs;
 
-import javax.naming.ContextNotEmptyException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,18 +9,19 @@ public class SQLServer {
     public String ip;
     public String port;
     public String database;
-    public String username;
-    public String password;
 
     public Connection ConnectToSQLServer(String inputIp, String inputPort, String inputDatabase, String inputUsername, String inputPassword, boolean encrypt) throws ClassNotFoundException, SQLException {
         Class.forName( "com.microsoft.sqlserver.jdbc.SQLServerDriver");
         con = DriverManager.getConnection("jdbc:sqlserver://" + inputIp + ":" + inputPort + ";databaseName=" + inputDatabase + ";user=" + inputUsername + ";password=" + inputPassword + ";encrypt=" + encrypt + ";");
+        ip = inputIp;
+        port = inputPort;
+        database = inputDatabase;
         return con;
     }
 
-    public Connection ConnectToSQLServer(String inputIp, String inputPort, String inputDatabase, String inputUsername, String inputPassword) throws ClassNotFoundException, SQLException {
+    public Connection ConnectToSQLServer(String inputIp, String inputPort, String inputUsername, String inputPassword, boolean encrypt) throws ClassNotFoundException, SQLException {
         Class.forName( "com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        con = DriverManager.getConnection("jdbc:sqlserver://" + inputIp + ":" + inputPort + ";databaseName=" + inputDatabase + ";user=" + inputUsername + ";password=" + inputPassword + ";");
+        con = DriverManager.getConnection("jdbc:sqlserver://" + inputIp + ":" + inputPort + ";user=" + inputUsername + ";password=" + inputPassword + ";"+ "encrypt=" + encrypt + ";");
         return con;
     }
 
@@ -64,12 +64,9 @@ public class SQLServer {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         SQLServer sqlServer = new SQLServer();
-        sqlServer.ConnectToSQLServer("localhost", "1433", "wuzhouDict", "sa", "123456", false);
-        sqlServer.runSQL("INSERT INTO dbo.[users] (id, username, password, name, role) VALUES (1, 'admin', 'password', 'admin', '1')");
-        ResultSet rs = sqlServer.runSQL("SELECT * FROM dbo.[users]");
-        while(rs.next()) {
-            System.out.println(rs.getString("name"));
-        }
+        sqlServer.ConnectToSQLServer("localhost", "1433", "sa", "123456", false);
+        sqlServer.CloseConnection();
+        sqlServer.ConnectToSQLServer("localhost", "1433", "master", "sa", "123456", false);
         sqlServer.CloseConnection();
     }
 }

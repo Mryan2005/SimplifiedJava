@@ -1,3 +1,5 @@
+package top.mryan2005;
+
 public class Random {
     public int RandInt() {
         java.util.Random rand = new java.util.Random();
