@@ -1,9 +1,11 @@
 name: Publish package to GitHub Packages
 on:
   push:
-    tag:
-        - 'v**'
-        - 'V**'
+    tags:
+      - v**
+      - V**
+      - beta**
+      - test**
 jobs:
   publish:
     runs-on: ubuntu-latest
