@@ -1,6 +1,6 @@
 package top.mryan2005;
 
-import jpp.SQLs.*;
+import top.mryan2005.SQLs.*;
 import top.mryan2005.SQLs.MySQL;
 import top.mryan2005.SQLs.SQLServer;
 import top.mryan2005.SQLs.SQLite;
