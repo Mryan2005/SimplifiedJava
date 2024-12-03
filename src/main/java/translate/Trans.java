@@ -20,6 +20,11 @@ public class Trans {
         rf.close();
         object = JSONObject.parseObject(content.toString(), Feature.OrderedField);
     }
+
+    public String tr(String key) {
+        return object.getString(key);
+    }
+
     public static void main(String[] args) throws IOException, FileNotFoundException {
         Trans trans = new Trans("in.json");
     }
