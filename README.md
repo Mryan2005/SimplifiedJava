@@ -1,3 +1,14 @@
+# Introduce
+
+This is a Java library that can help you to write Java code more easily.
+I think it is just like the file `bits/stdc++.h` in C++, so I named it `JavaPlusPlus`.
+
+# Used Package
+
+- fastjson
+- commons-codec
+- mssql-jdbc
+
 # install the package
 
 firstly, you should add the following line to your `~/.m2/settings.xml` file:
