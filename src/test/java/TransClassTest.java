@@ -11,7 +11,7 @@ public class TransClassTest {
         RAFile raIn = new RAFile("test/TransClass/out.dat");
         int i = 0;
         for(String key : trIn.object.keySet()) {
-            if((trIn.object.get(key)).equals(raIn.content.get(i))) {
+            if(trIn.tr(key).equals(raIn.content.get(i))) {
                 i++;
             } else {
                 fail();
