@@ -3,20 +3,15 @@ package translate;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-public class NewJSONObject {
-    public Map<String, String> map;
+public class NewJSONObject extends JSONObject {
     public NewJSONObject() {
-        this.map = new LinkedHashMap<>();  //new HashMap();
+        super();
     }
-    public static NewJSONObject parseObject(String content, Feature orderedField) {
-        NewJSONObject object = new NewJSONObject();
-        JSONObject jsonObject = JSONObject.parseObject(content);
-        for(String key : jsonObject.keySet()) {
-            object.map.put(key, jsonObject.getString(key));
+    public static JSONObject parseObject(String text, boolean ordered) {
+        if (ordered) {
+            return JSONObject.parseObject(text, Feature.OrderedField);
+        } else {
+            return JSONObject.parseObject(text);
         }
-        return object;
     }
 }

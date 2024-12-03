@@ -18,7 +18,7 @@ public class Trans {
             content.append(rf.readLine());
         }
         rf.close();
-        object = JSONObject.parseObject(content.toString(), Feature.OrderedField);
+        object = NewJSONObject.parseObject(content.toString(), true);
     }
 
     public String tr(String key) {
