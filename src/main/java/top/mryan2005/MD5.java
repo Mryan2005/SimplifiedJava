@@ -5,6 +5,16 @@ import org.apache.commons.codec.digest.DigestUtils;
 import java.util.Random;
 
 public class MD5 {
+    
+    public static String md5EncryptPassword(String password) {
+        String res = "";
+        for(int i = 1; i <= 5; ++i) {
+            if(i == 1) res = DigestUtils.md5Hex(password);
+            else res = DigestUtils.md5Hex(res);
+        }
+        return res;
+    }
+    
     public Hash generateMd5Hash(String input) {
         Hash hash = new Hash();
         hash.hash = DigestUtils.md5Hex(input);
