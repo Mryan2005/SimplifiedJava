@@ -1,6 +1,6 @@
 package top.mryan2005.simplifiedjava;
 
-import top.mryan2005.SQLs.*;
+import top.mryan2005.simplifiedjava.SQLs.*;
 import top.mryan2005.simplifiedjava.SQLs.MySQL;
 import top.mryan2005.simplifiedjava.SQLs.SQLServer;
 import top.mryan2005.simplifiedjava.SQLs.SQLite;
