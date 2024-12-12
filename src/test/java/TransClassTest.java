@@ -1,6 +1,6 @@
-import top.mryan2005.RAFile;
+import top.mryan2005.simplifiedjava.RAFile;
 import org.junit.Test;
-import top.mryan2005.Trans;
+import top.mryan2005.simplifiedjava.Trans;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;

@@ -1,4 +1,4 @@
-package top.mryan2005;
+package top.mryan2005.simplifiedjava;
 
 public class Base64 {
     public String encodeBase64(String input) {

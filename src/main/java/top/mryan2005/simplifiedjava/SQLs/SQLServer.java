@@ -1,4 +1,4 @@
-package top.mryan2005.SQLs;
+package top.mryan2005.simplifiedjava.SQLs;
 
 import java.sql.*;
 import java.util.ArrayList;

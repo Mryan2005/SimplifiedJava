@@ -1,4 +1,4 @@
-package top.mryan2005;
+package top.mryan2005.simplifiedjava;
 
 public class Random {
     public int RandInt() {

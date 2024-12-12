@@ -1,4 +1,4 @@
-package top.mryan2005;
+package top.mryan2005.simplifiedjava;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;

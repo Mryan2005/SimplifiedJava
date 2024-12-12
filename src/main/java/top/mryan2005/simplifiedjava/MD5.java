@@ -1,4 +1,4 @@
-package top.mryan2005;
+package top.mryan2005.simplifiedjava;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
