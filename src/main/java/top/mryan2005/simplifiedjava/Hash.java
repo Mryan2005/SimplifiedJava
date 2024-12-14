@@ -1,7 +1,7 @@
 package top.mryan2005.simplifiedjava;
 
 public class Hash {
-    String hash;
-    String salt;
+    public String hash;
+    public String salt;
     boolean isSalted;
 }
