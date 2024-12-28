@@ -28,7 +28,10 @@ jobs:
       - name: Import private-key
         run: gpg --import private-file.key
       - name: SettingXML
-        run: echo ${{ secrets.SETTINGSXML }} > settings.xml
+        run: |
+          cat > settings.xml <<EOF
+          ${{ secrets.SETTINGSXML }}
+          EOF
       - name: move Settings.xml
         run: mv settings.xml ~/.m2/settings.xml
       - uses: actions/checkout@v4
