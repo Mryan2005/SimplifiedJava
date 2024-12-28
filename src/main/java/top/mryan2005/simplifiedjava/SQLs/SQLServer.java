@@ -3,8 +3,10 @@ package top.mryan2005.simplifiedjava.SQLs;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import top.mryan2005.simplifiedjava.SQLs.Exceptions.SQLServerDatabaseNotFoundException;
 import top.mryan2005.simplifiedjava.SQLs.Exceptions.SQLServerNotNULLException;
 import top.mryan2005.simplifiedjava.SQLs.Exceptions.SQLServerPrimaryKeyException;
+import top.mryan2005.simplifiedjava.SQLs.Exceptions.throwSQLServerException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,11 +20,15 @@ public class SQLServer {
     public String database;
 
     public Connection ConnectToSQLServer(String inputIp, String inputPort, String inputDatabase, String inputUsername, String inputPassword, boolean encrypt) throws ClassNotFoundException, SQLException {
-        Class.forName( "com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        con = DriverManager.getConnection("jdbc:sqlserver://" + inputIp + ":" + inputPort + ";databaseName=" + inputDatabase + ";user=" + inputUsername + ";password=" + inputPassword + ";encrypt=" + encrypt + ";");
-        ip = inputIp;
-        port = inputPort;
-        database = inputDatabase;
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            con = DriverManager.getConnection("jdbc:sqlserver://" + inputIp + ":" + inputPort + ";databaseName=" + inputDatabase + ";user=" + inputUsername + ";password=" + inputPassword + ";encrypt=" + encrypt + ";");
+            ip = inputIp;
+            port = inputPort;
+            database = inputDatabase;
+        } catch (SQLException e) {
+            throwSQLServerException.throwExeption(e.getErrorCode(), e.getMessage());
+        }
         return con;
     }
 
@@ -46,11 +52,15 @@ public class SQLServer {
              if (e.getMessage().matches("(.*)PRIMARY KEY(.*)")) {
                  throw new SQLServerPrimaryKeyException(e.getMessage());
              } else if(e.getMessage().matches("(.*)INSERT(.*)")) {
-                 if(e.getMessage().matches("(.*)NULL(.*)")) {
+                 if (e.getMessage().matches("(.*)NULL(.*)")) {
                      throw new SQLServerNotNULLException(e.getMessage());
-                 } else {
-                     throw e;
                  }
+             } else if(e.getMessage().matches("(.*)数据库(.*)不存在")) {
+                     throw new SQLServerDatabaseNotFoundException(e.getMessage());
+             } else if(e.getMessage().matches("(.*)1111(.*)")) {
+                 throw new SQLServerDatabaseNotFoundException(e.getMessage());
+             } else {
+                 throw e;
              }
         }
         if (result && stmt != null) {
@@ -88,7 +98,7 @@ public class SQLServer {
         SQLServer sqlServer = new SQLServer();
         sqlServer.ConnectToSQLServer("localhost", "1433", "sa", "123456", false);
         sqlServer.CloseConnection();
-        sqlServer.ConnectToSQLServer("localhost", "1433", "master", "sa", "123456", false);
+        sqlServer.ConnectToSQLServer("localhost", "1433", "1111", "sa", "123456", false);
         sqlServer.CloseConnection();
     }
 }
