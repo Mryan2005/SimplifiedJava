@@ -1,10 +1,17 @@
 package top.mryan2005.simplifiedjava.SQLs;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import top.mryan2005.simplifiedjava.SQLs.Exceptions.SQLServerNotNULLException;
+import top.mryan2005.simplifiedjava.SQLs.Exceptions.SQLServerPrimaryKeyException;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SQLServer {
+    private static final Logger log = LoggerFactory.getLogger(SQLServer.class);
     public Connection con;
     public String ip;
     public String port;
@@ -30,8 +37,23 @@ public class SQLServer {
     }
 
     public ResultSet runSQL(String sql) throws SQLException {
-        Statement stmt = con.createStatement();
-        if(stmt.execute(sql)) {
+        boolean result = false;
+        Statement stmt = null;
+        try {
+            stmt = con.createStatement();
+            result = stmt.execute(sql);
+        } catch (SQLServerException e) {
+             if (e.getMessage().matches("(.*)PRIMARY KEY(.*)")) {
+                 throw new SQLServerPrimaryKeyException(e.getMessage());
+             } else if(e.getMessage().matches("(.*)INSERT(.*)")) {
+                 if(e.getMessage().matches("(.*)NULL(.*)")) {
+                     throw new SQLServerNotNULLException(e.getMessage());
+                 } else {
+                     throw e;
+                 }
+             }
+        }
+        if (result && stmt != null) {
             return stmt.getResultSet();
         } else {
             return null;
