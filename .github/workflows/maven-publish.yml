@@ -23,6 +23,11 @@ jobs:
       security-events: write
       statuses: write
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
       - name: Create private-file.key
         run: echo "${{ secrets.GPGPASSPHRASE }}" > private-file.key
       - name: Import private-key
@@ -33,11 +38,6 @@ jobs:
           ${{ secrets.SETTINGSXML }}
           EOF
           ls
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
       - name: Publish package
         run: mvn --batch-mode deploy -s settings.xml
         env:
