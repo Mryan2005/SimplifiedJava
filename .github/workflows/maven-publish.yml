@@ -29,6 +29,7 @@ jobs:
         run: gpg --import private-file.key
       - name: SettingXML
         run: |
+          mkdir -p ~/.m2
           cat /dev/null > ~/.m2/settings.xml
           cat > ~/.m2/settings.xml <<EOF
           ${{ secrets.SETTINGSXML }}
