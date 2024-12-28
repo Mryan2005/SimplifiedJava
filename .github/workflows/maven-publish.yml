@@ -30,7 +30,7 @@ jobs:
       - name: SettingXML
         run: echo ${{ secrets.SETTINGSXML }} > settings.xml
       - name: move Settings.xml
-        run: mv settings.xml /usr/share/maven/conf/settings.xml
+        run: mv settings.xml ~/.m2/settings.xml
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
