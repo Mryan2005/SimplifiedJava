@@ -32,3 +32,11 @@ jobs:
         run: mvn --batch-mode deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+      - name: Maven Central Publish
+        # You may pin to the exact commit or the version.
+        # uses: zhoujunlin94/auto_deploy_maven_central@d008e8cc182d799a9fd507164f83c54be0b0a858
+        uses: zhoujunlin94/auto_deploy_maven_central@1.5
+        with:
+          # GPG_PASSPHRASE
+          GPG_PASSPHRASE: ${{ secrets.GPGPASSPHRASE }}
+          
