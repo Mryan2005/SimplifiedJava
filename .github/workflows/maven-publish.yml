@@ -29,11 +29,10 @@ jobs:
         run: gpg --import private-file.key
       - name: SettingXML
         run: |
-          cat > settings.xml <<EOF
+          cat /dev/null > ~/.m2/settings.xml
+          cat > ~/.m2/settings.xml <<EOF
           ${{ secrets.SETTINGSXML }}
           EOF
-      - name: move Settings.xml
-        run: mv settings.xml ~/.m2/settings.xml
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
