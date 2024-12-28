@@ -11,6 +11,8 @@ I think it is just like the file `bits/stdc++.h` in C++, so I named it `JavaPlus
 
 # install the package
 
+## Through GitHub Maven
+
 firstly, you should add the following line to your `~/.m2/settings.xml` file:
 
 ```xml
@@ -85,12 +87,24 @@ And then you will see the following code in your `./m2/settings.xml` file
 </settings>
 ```
 
-Then you can add the following code to your `pom.xml` file:
+Then you can add the following codes to your `pom.xml` file:
 
 ```xml
 <dependency>
   <groupId>top.mryan2005.javaplusplus</groupId>
   <artifactId>javaplusplus</artifactId>
   <version>1.0-SNAPSHOT</version>
+</dependency>
+```
+
+## Through Maven Central Repository
+
+You only need to add the following codes to your `pom.xml` file:
+
+```xml
+<dependency>
+    <groupId>top.mryan2005.maven</groupId>
+    <artifactId>simplifiedjava</artifactId>
+    <version>1.0.7-beta</version>
 </dependency>
 ```
