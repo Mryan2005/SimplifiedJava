@@ -136,7 +136,6 @@
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>1.5</version>
                 <configuration>
-                    <executable>C:\Program Files\Git\usr\bin\gpg.exe</executable>
                     <keyname>top.mryan2005.maven</keyname>
                 </configuration>
                 <executions>
