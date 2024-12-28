@@ -27,17 +27,19 @@ jobs:
         run: echo "${{ secrets.GPGPASSPHRASE }}" > private-file.key
       - name: Import private-key
         run: gpg --import private-file.key
-      - name: maven-settings-xml-action
-        uses: whelk-io/maven-settings-xml-action@v22
-        with:
-          servers: '[{ "id": "Mryan2005", "username": "${{secrets.mavenUsername}}", "password": "${{secrets.mavenPassword}}" }]'
+      - name: SettingXML
+        run: |
+          cat << EOF > settings.xml
+          ${{ secrets.SETTINGSXML }}
+          EOF
+          ls
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
       - name: Publish package
-        run: mvn --batch-mode deploy
+        run: mvn --batch-mode deploy -s settings.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
 #      - name: Maven Central Publish
