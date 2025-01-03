@@ -113,4 +113,4 @@ You only need to add the following codes to your `pom.xml` file:
 
 ### [repo.maven.apache.org](https://repo.maven.apache.org)
 
-you can go to [there](https://repo.maven.apache.org/maven2/top/mryan2005/maven/simplifiedjava/) to download the jar package
+You can go to [there](https://repo.maven.apache.org/maven2/top/mryan2005/maven/simplifiedjava/) to download the jar package
