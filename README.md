@@ -1,6 +1,6 @@
 # Introduce
 
-This is a Java library that can help you to write Java code more easily.
+This is a Java Package that can help you to write Java code more easily.
 
 # Used Package
 
