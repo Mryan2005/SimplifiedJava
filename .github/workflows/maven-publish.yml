@@ -42,6 +42,13 @@ jobs:
         run: mvn --batch-mode deploy -s settings.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+      - name: Publish to GitHub Packages Apache Maven
+        run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+
 #      - name: Maven Central Publish
 #        # You may pin to the exact commit or the version.
 #        # uses: zhoujunlin94/auto_deploy_maven_central@d008e8cc182d799a9fd507164f83c54be0b0a858
