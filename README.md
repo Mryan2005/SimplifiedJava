@@ -99,7 +99,7 @@ Then you can add the following codes to your `pom.xml` file:
 
 ## Through Maven Central Repository
 
-### [central.sonatype.com](https://central.sonatype.com/artifact/top.mryan2005.maven/simplifiedjava）
+### [central.sonatype.com](https://central.sonatype.com/artifact/top.mryan2005.maven/simplifiedjava)
 
 You only need to add the following codes to your `pom.xml` file:
 
