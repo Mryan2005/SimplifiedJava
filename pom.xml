@@ -157,6 +157,7 @@
                 <configuration>
                     <altDeploymentRepository>github::default::https://maven.pkg.github.com/Mryan2005/SimplifiedJava</altDeploymentRepository>
                 </configuration>
+
             </plugin>
         </plugins>
     </build>
