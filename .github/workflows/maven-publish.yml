@@ -40,6 +40,8 @@ jobs:
           ls
       - name: Publish package
         run: mvn deploy -s settings.xml
+      - name: Publish package
+        run: mvn --batch-mode deploy -f ./pomForGitHub.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
 
