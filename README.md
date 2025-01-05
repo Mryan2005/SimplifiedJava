@@ -12,6 +12,8 @@ This is a Java Package that can help you to write Java code more easily.
 
 ## Through GitHub Maven
 
+[GitHub Package](https://github.com/Mryan2005?tab=packages&repo_name=SimplifiedJava)
+
 firstly, you should add the following line to your `~/.m2/settings.xml` file:
 
 ```xml
