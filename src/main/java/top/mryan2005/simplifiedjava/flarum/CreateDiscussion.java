@@ -1,10 +1,9 @@
 package top.mryan2005.simplifiedjava.flarum;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 
 public class CreateDiscussion {
@@ -23,70 +22,64 @@ public class CreateDiscussion {
         this.hostUrl = hostUrl;
     }
 
-    public StringBuffer submit() {
-        try {
-            // URL of the server endpoint
-            URL url = new URL(hostUrl + "/api/discussions");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    public StringBuffer submit() throws IOException {
+        // URL of the server endpoint
+        URL url = new URL(hostUrl + "/api/discussions");
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-            // Set the request method to POST
-            connection.setRequestMethod("POST");
-            connection.setDoOutput(true);
+        // Set the request method to POST
+        connection.setRequestMethod("POST");
+        connection.setDoOutput(true);
 
-            // Set request headers
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setRequestProperty("Accept", "application/json");
-            connection.setRequestProperty("Authorization", "Token " + this.token);
+        // Set request headers
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setRequestProperty("Accept", "application/json");
+        connection.setRequestProperty("Authorization", "Token " + this.token);
 
-            // JSON payload
-            String jsonInputString = String.format(
-                "{" +
-                    "\"data\": {" +
-                        "\"type\": \"discussions\"," +
-                        "\"attributes\": {" +
-                            "\"title\": \"%s\"," +
-                            "\"content\": \"%s\"" +
-                        "}," +
-                        "\"relationships\": {" +
-                            "\"tags\": {" +
-                                "\"data\": [" +
-                                    "%s" +
-                                "]" +
-                            "}" +
+        // JSON payload
+        String jsonInputString = String.format(
+            "{" +
+                "\"data\": {" +
+                    "\"type\": \"discussions\"," +
+                    "\"attributes\": {" +
+                        "\"title\": \"%s\"," +
+                        "\"content\": \"%s\"" +
+                    "}," +
+                    "\"relationships\": {" +
+                        "\"tags\": {" +
+                            "\"data\": [" +
+                                "%s" +
+                            "]" +
                         "}" +
                     "}" +
-                "}",
-                title, content, String.join(",", tags)
-            );
+                "}" +
+            "}",
+            title, content, String.join(",", tags)
+        );
 
-            // Send the request
-            try (OutputStream os = connection.getOutputStream()) {
-                byte[] input = jsonInputString.getBytes("utf-8");
-                os.write(input, 0, input.length);
-            }
-
-            // Get the response code
-            int responseCode = connection.getResponseCode();
-            System.out.println("Response Code: " + responseCode);
-
-            // Handle the response (optional)
-             InputStream inputStream = connection.getInputStream();
-             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-             String line;
-             StringBuffer response = new StringBuffer();
-             while ((line = reader.readLine()) != null) {
-                 response.append(line);
-             }
-             reader.close();
-             return response;
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        // Send the request
+        try (OutputStream os = connection.getOutputStream()) {
+            byte[] input = jsonInputString.getBytes("utf-8");
+            os.write(input, 0, input.length);
         }
-        return null;
+
+        // Get the response code
+        int responseCode = connection.getResponseCode();
+        System.out.println("Response Code: " + responseCode);
+
+        // Handle the response (optional)
+         InputStream inputStream = connection.getInputStream();
+         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+         String line;
+         StringBuffer response = new StringBuffer();
+         while ((line = reader.readLine()) != null) {
+             response.append(line);
+         }
+         reader.close();
+         return response;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String hostUrl = "https://xxx.com";
         String token = "xxx";
         String title = "Hello World";
